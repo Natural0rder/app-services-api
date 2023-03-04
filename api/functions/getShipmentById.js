@@ -6,7 +6,8 @@ exports = function({ query, headers, body}, response) {
     const {id} = query;
 
     console.log("Retrieving shipment: ", id);
-    const shipmentDoc = context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "$_id" : id});
+    const objectId = new BSON.ObjectId(id);
+    const shipmentDoc = context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
 
     return  shipmentDoc;
 };
