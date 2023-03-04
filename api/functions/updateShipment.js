@@ -4,23 +4,18 @@ exports = async function({ query, headers, body}, response) {
     response.setHeader("Content-Type", "application/json");
     
     try {
-        objectId = new BSON.ObjectId(id);
+      objectId = new BSON.ObjectId(id);
     }
     catch (ex) {
-        response.setStatusCode(400);
-        response.setBody(JSON.stringify({ 
-          error : ex.message
-        }));
-        response.setBody(ex.message);
+      response.setStatusCode(400);
+      response.setBody(JSON.stringify({ error : ex }));
         
-        return;
+      return;
     }
     
     if (body === undefined) {
         response.setStatusCode(400);
-        response.setBody(JSON.stringify({ 
-          error :`Request body was not defined.`
-        }));
+        response.setBody(JSON.stringify({ error :`Request body was not defined.` }));
         
         return;
     }
@@ -33,26 +28,26 @@ exports = async function({ query, headers, body}, response) {
     };
     const options = { "upsert": false };
     
-   shipmentsColl.updateOne(match, update, options)
-    .then(result => {
-      const { matchedCount, modifiedCount } = result;
-      if (matchedCount) {
-        response.setStatusCode(200);
-        response.setBody(JSON.stringify({
-          message: `Shipment ${id} successfully updated.`
-        }));
-      }
-      else {
-        response.setStatusCode(409);
-        response.setBody(JSON.stringify({
-          message: `Shipment ${id} not found for updation.`
-        }));
-      }
+    shipmentsColl.updateOne(match, update, options)
+      .then(result => {
+        const { matchedCount, modifiedCount } = result;
+        if (matchedCount) {
+          response.setStatusCode(200);
+          response.setBody(JSON.stringify({
+            message: `Shipment ${id} successfully updated.`
+          }));
+        }
+        else {
+          response.setStatusCode(409);
+          response.setBody(JSON.stringify({
+            message: `Shipment ${id} not found for updation.`
+          }));
+        }
+      })
+    .catch(ex => { 
+      response.setStatusCode(500);
+      response.setBody(JSON.stringify({ 
+          error :`Failed to update shipment ${id}: ${ex}`
+      }));
     })
-  .catch(ex => { 
-    response.setStatusCode(500);
-    response.setBody(JSON.stringify({ 
-        error :`Failed to update shipment ${id}: ${ex.message}`
-    }));
-  })
 };
