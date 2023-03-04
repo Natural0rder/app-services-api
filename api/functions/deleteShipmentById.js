@@ -24,7 +24,7 @@ exports = async function({ query, headers, body}, response) {
       }
       else {
         response.setStatusCode(409);
-        response.setBody(`Shipment ${id} not found for deletion.`)
+        response.setBody({ message : `Shipment ${id} not found for deletion.`})
       }
     })
     .catch(err => {
