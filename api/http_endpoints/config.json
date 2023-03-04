@@ -31,5 +31,16 @@
         "create_user_on_auth": false,
         "disabled": false,
         "return_type": "EJSON"
+    },
+    {
+        "route": "/shipment",
+        "http_method": "DELETE",
+        "function_name": "deleteShipmentById",
+        "validation_method": "NO_VALIDATION",
+        "respond_result": false,
+        "fetch_custom_user_data": false,
+        "create_user_on_auth": false,
+        "disabled": false,
+        "return_type": "EJSON"
     }
 ]
