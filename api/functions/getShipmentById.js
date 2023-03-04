@@ -25,8 +25,6 @@ exports = async function({ query, headers, body}, response) {
     response.setStatusCode(200);
     return shipmentDoc;*/
     
-   
-    
     // Promise style
     return shipmentsColl.findOne(match)
         .then(result => {
