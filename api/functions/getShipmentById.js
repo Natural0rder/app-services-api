@@ -15,7 +15,7 @@ exports = function({ query, headers, body}, response) {
     
     const shipmentDoc = context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
     
-    if (!shipmentDoc) {
+    if (!shipmentDoc._id) {
       response.setStatusCode(404);
       return;
     }
