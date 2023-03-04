@@ -14,7 +14,9 @@ exports = async function({ query, headers, body}, response) {
     }
     
     const match = { "_id" : objectId};
-    const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
+    var dbName = context.values.get("DatabaseName");
+    var collName = context.value.get("ShipmentCollectionName");
+    const shipmentsColl = context.services.get("mongodb-atlas").db(dbName).collection(collName);
     
     return shipmentsColl.findOne(match)
         .then(result => {
