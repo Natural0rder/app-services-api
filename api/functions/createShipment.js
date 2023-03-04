@@ -10,7 +10,8 @@ exports = async function({ query, headers, body}, response) {
       return;
     }
   
-    const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments")
+    const config = context.values.get("NamespaceConfig");
+    const shipmentsColl = context.services.get("mongodb-atlas").db(config.dbName).collection(config.shipmentCollName);
     
     try {
       const newShipment = EJSON.parse(body.text());

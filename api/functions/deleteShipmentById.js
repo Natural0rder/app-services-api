@@ -15,7 +15,8 @@ exports = async function({ query, headers, body}, response) {
     }
       
     const match = { "_id" : objectId};
-    const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
+    const config = context.values.get("NamespaceConfig");
+    const shipmentsColl = context.services.get("mongodb-atlas").db(config.dbName).collection(confog.shipmentCollName);
       
     shipmentsColl.deleteOne(match)
       .then(result => {
