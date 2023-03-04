@@ -13,7 +13,11 @@ exports = async function({ query, headers, body}, response) {
         return;
     }
     
-    /*const shipmentDoc = await context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
+    const match = { "_id" : objectId};
+    const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
+    
+    /* await style
+    const shipmentDoc = await shipmentsColl.findOne(match);
     if (shipmentDoc === null) {
       response.setStatusCode(404);
       return;
@@ -21,9 +25,10 @@ exports = async function({ query, headers, body}, response) {
     response.setStatusCode(200);
     return shipmentDoc;*/
     
-    const match = { "_id" : objectId};
+   
     
-    return context.services.get("mongodb-atlas").db("game").collection("shipments").findOne(match)
+    // Promise style
+    return shipmentsColl.findOne(match)
         .then(result => {
             if (!result) {
                 response.setStatusCode(404);
