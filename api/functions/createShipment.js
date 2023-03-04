@@ -17,7 +17,7 @@ exports = async function({ query, headers, body}, response) {
       
       response.setStatusCode(201);
       response.setBody(JSON.stringify({
-         message: "Successfully saved the request body",
+         message: "Shipment successfully created.",
          insertedId,
       }));
    } catch (error) {
