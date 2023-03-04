@@ -23,7 +23,7 @@ exports = async function({ query, headers, body}, response) {
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
     const replacement = EJSON.parse(body.text());
     
-    return shipmentsColl.findOneAndReplace({ _id : objectId}, replacement, {})
+    return shipmentsColl.findOneAndReplace({ _id : objectId}, replacement, { returnNewDocument : true})
   .then(replacedDocument => {
     if(replacedDocument) {
       console.log(`Successfully replaced the following document: ${replacedDocument}.`)
