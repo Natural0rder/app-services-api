@@ -31,10 +31,7 @@ exports = async function({ query, headers, body}, response) {
    shipmentsColl.updateOne(match, update, options)
     .then(result => {
       const { matchedCount, modifiedCount } = result;
-      console.log(matchedCount);
-      console.log(modifiedCount);
-      console.log(JSON.stringify(result));
-      if (matchedCount && modifiedCount) {
+      if (matchedCount) {
         response.setStatusCode(200);
         response.setBody(JSON.stringify({
           message: `Shipment ${id} successfully updated.`
