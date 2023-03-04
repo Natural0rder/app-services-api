@@ -1,6 +1,6 @@
 exports = async function({ query, headers, body}, response) {
   
-    if (request.body === undefined) {
+    if (body === undefined) {
         response.setStatusCode(400);
         response.setBody(`Request body was not defined.`);
         
@@ -10,8 +10,8 @@ exports = async function({ query, headers, body}, response) {
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments")
     
     try {
-      const body = JSON.parse(request.body.text());
-      const { insertedId } = await context.services.get("mongodb-atlas").db("myDb").collection("myCollection").insertOne(body);
+      const newShipment = JSON.parse(request.body.text());
+      const { insertedId } = await context.services.get("mongodb-atlas").db("myDb").collection("myCollection").insertOne(newShipment);
       
       response.setStatusCode(201);
       response.setBody(JSON.stringify({
