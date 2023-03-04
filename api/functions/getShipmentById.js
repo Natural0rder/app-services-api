@@ -26,7 +26,7 @@ exports = async function({ query, headers, body}, response) {
     return shipmentDoc;*/
     
     
-    context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId})
+    return context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId})
     .then(result => {
       if (result === null) {
         response.setStatusCode(404);
