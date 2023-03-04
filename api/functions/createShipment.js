@@ -18,7 +18,7 @@ exports = async function({ query, headers, body}, response) {
       response.setStatusCode(201);
       response.setBody(JSON.stringify({
          message: "Shipment successfully created.",
-         insertedId,
+         insertedId: insertedId,
       }));
    } catch (error) {
       response.setStatusCode(500);
