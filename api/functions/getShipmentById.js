@@ -1,8 +1,9 @@
 // This function is the endpoint's request handler.
 exports = function({ query, headers, body}, response) {
+  
     const {id} = query;
-    console.log("Retrieving shipment: ", id);
     let objectId;
+    response.setHeader("Content-Type", "application/json");
     
     try {
       objectId = new BSON.ObjectId(id);
@@ -21,7 +22,6 @@ exports = function({ query, headers, body}, response) {
     }
 
     response.setStatusCode(200);
-    response.setHeader("Content-Type", "application/json");
-
+    
     return shipmentDoc;
 };
