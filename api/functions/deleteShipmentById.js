@@ -20,7 +20,7 @@ exports = async function({ query, headers, body}, response) {
     .then(result => {
       if (result.deletedCount) {
         response.setStatusCode(200);
-        response.setBody(`Shipment ${id} deleted.`)
+        response.setBody(JSON.stringify({ message : `Shipment ${id} deleted.`}));
       }
       else {
         response.setStatusCode(409);
@@ -29,6 +29,6 @@ exports = async function({ query, headers, body}, response) {
     })
     .catch(err => {
       response.setStatusCode(500);
-      response.setBody(`Delete failed with error: ${err}`)
+      response.setBody(JSON.stringify({error : `Delete failed with error: ${err}`}));
     })
 };
