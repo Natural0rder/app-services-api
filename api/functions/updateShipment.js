@@ -47,7 +47,7 @@ exports = async function({ query, headers, body}, response) {
     .catch(ex => { 
       response.setStatusCode(500);
       response.setBody(JSON.stringify({ 
-          error :`Failed to update shipment ${id}: ${ex}`
+          error :`Failed to update shipment ${id}: ${ex}.`
       }));
     })
 };
