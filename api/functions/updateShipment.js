@@ -34,7 +34,7 @@ exports = async function({ query, headers, body}, response) {
       if (matchedCount && modifiedCount) 
         response.setStatusCode(200);
       else
-        reponse.setStatusCode(409);
+        response.setStatusCode(409);
     })
   .catch(err => { 
     response.setStatusCode(500);
