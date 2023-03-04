@@ -16,22 +16,13 @@ exports = async function({ query, headers, body}, response) {
     const match = { "_id" : objectId};
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
     
-    /* await style
-    const shipmentDoc = await shipmentsColl.findOne(match);
-    if (shipmentDoc === null) {
-      response.setStatusCode(404);
-      return;
-    }
-    response.setStatusCode(200);
-    return shipmentDoc;*/
-    
-    // Promise style
     return shipmentsColl.findOne(match)
         .then(result => {
-            if (!result) {
-                response.setStatusCode(404);
-            }
-            response.setStatusCode(200);
+            if (!result) 
+              response.setStatusCode(404);
+            else
+              response.setStatusCode(200);
+              
             return result;
         })
         .catch(ex => {
