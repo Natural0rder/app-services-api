@@ -13,7 +13,7 @@
     {
         "route": "/shipment",
         "http_method": "POST",
-        "function_name": "CreateShipment",
+        "function_name": "createShipment",
         "validation_method": "NO_VALIDATION",
         "respond_result": true,
         "fetch_custom_user_data": false,

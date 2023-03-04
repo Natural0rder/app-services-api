@@ -6,8 +6,9 @@
         "disable_arg_logs": true
     },
     {
-        "name": "CreateShipment",
+        "name": "createShipment",
         "private": false,
+        "run_as_system": true,
         "disable_arg_logs": true
     }
 ]
