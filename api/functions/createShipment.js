@@ -3,10 +3,12 @@ exports = async function({ query, headers, body}, response) {
     response.setHeader("Content-Type", "application/json");
     
     if (body === undefined) {
-        response.setStatusCode(400);
-        response.setBody(`Request body was not defined.`);
+      response.setStatusCode(400);
+      response.setBody(JSON.stringify({ 
+        error :`Request body was not defined.`
+      }));
         
-        return;
+      return;
     }
   
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments")
@@ -20,8 +22,10 @@ exports = async function({ query, headers, body}, response) {
          message: "Shipment successfully created.",
          insertedId: insertedId,
       }));
-   } catch (error) {
+    } catch (ex) {
       response.setStatusCode(500);
-      response.setBody(error.message);
+      response.setBody(JSON.stringify({ 
+        error :`Failed to create new shipment : ${ex.message}`
+      }));
    }
 };
