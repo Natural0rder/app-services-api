@@ -9,6 +9,7 @@ exports = function({ query, headers, body}, response) {
     catch (error) {
       response.setStatusCode(400);
       response.setBody(error.message);
+      return;
     }
     
     const shipmentDoc = context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
