@@ -9,7 +9,7 @@ exports = async function({ query, headers, body}, response) {
     }
     catch (ex) {
         response.setStatusCode(400);
-        response.setBody(JSON.stringify({ error : ex.message}));
+        response.setBody(JSON.stringify({ error : ex}));
         return;
     }
     
@@ -26,7 +26,7 @@ exports = async function({ query, headers, body}, response) {
             return result;
         })
         .catch(ex => {
-            response.setBody(`Failed to find shipment ${id}: ${ex.message}`);
+            response.setBody(`Failed to find shipment ${id}: ${ex}`);
             response.setStatusCode(500);
         });
 };
