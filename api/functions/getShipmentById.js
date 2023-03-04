@@ -1,16 +1,16 @@
 exports = async function({ query, headers, body}, response) {
-    
     const { id } = query;
     let objectId;
     response.setHeader("Content-Type", "application/json");
     
     try {
-        objectId = new BSON.ObjectId(id);
+      objectId = new BSON.ObjectId(id);
     }
     catch (ex) {
-        response.setStatusCode(400);
-        response.setBody(JSON.stringify({ error : ex}));
-        return;
+      response.setStatusCode(400);
+      response.setBody(JSON.stringify({ error : ex}));
+        
+      return;
     }
     
     const match = { "_id" : objectId};
