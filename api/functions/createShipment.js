@@ -22,5 +22,4 @@ exports = async function({ query, headers, body}, response) {
       response.setStatusCode(500);
       response.setBody(error.message);
    }
-    
 };
