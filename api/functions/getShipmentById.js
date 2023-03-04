@@ -15,6 +15,7 @@ exports = async function({ query, headers, body}, response) {
     
     const match = { "_id" : objectId};
     var dbName = context.values.get("DatabaseName");
+    console.log(dbName);
     var collName = context.value.get("ShipmentCollectionName");
     const shipmentsColl = context.services.get("mongodb-atlas").db(dbName).collection(collName);
     
