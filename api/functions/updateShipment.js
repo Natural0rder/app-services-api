@@ -23,13 +23,13 @@ exports = async function({ query, headers, body}, response) {
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
     
     
-    const find = { "_id": objectId };
+    const match = { "_id" : objectId};
     const update = {
       "$set": EJSON.parse(body.text())
     };
     const options = { "upsert": false };
     
-   shipmentsColl.updateOne(query, update, options)
+   shipmentsColl.updateOne(match, update, options)
   .then(result => {
     const { matchedCount, modifiedCount } = result;
     if(matchedCount && modifiedCount) {
