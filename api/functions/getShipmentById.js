@@ -9,7 +9,7 @@ exports = async function({ query, headers, body}, response) {
     }
     catch (ex) {
         response.setStatusCode(400);
-        response.setBody(ex.message);
+        response.setBody(JSON.stringify({ error : ex.message}));
         return;
     }
     
