@@ -1,5 +1,4 @@
 exports = async function({ query, headers, body}, response) {
-  
     response.setHeader("Content-Type", "application/json");
     
     if (body === undefined) {
