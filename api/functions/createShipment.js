@@ -13,7 +13,7 @@ exports = async function({ query, headers, body}, response) {
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments")
     
     try {
-      const newShipment = body;// EJSON.parse(body.text());
+      const newShipment = EJSON.parse(body.text());
       const { insertedId } = await shipmentsColl.insertOne(newShipment);
       
       response.setStatusCode(201);
