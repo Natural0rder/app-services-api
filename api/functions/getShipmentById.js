@@ -7,9 +7,9 @@ exports = async function({ query, headers, body}, response) {
     try {
         objectId = new BSON.ObjectId(id);
     }
-    catch (error) {
+    catch (ex) {
         response.setStatusCode(400);
-        response.setBody(error.message);
+        response.setBody(ex.message);
         return;
     }
     
@@ -32,8 +32,8 @@ exports = async function({ query, headers, body}, response) {
             response.setStatusCode(200);
             return result;
         })
-        .catch(err => {
-            console.error(`Failed to find document: ${err}`)
+        .catch(ex => {
+            response.setBody(`Failed to find document: ${ex}`);
             response.setStatusCode(500);
         });
 };
