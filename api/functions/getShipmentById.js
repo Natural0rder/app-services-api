@@ -2,9 +2,10 @@
 exports = function({ query, headers, body}, response) {
     const {id} = query;
     console.log("Retrieving shipment: ", id);
+    let objectId;
     
     try {
-       const objectId = new BSON.ObjectId(id);
+      objectId = new BSON.ObjectId(id);
     }
     catch (error) {
       response.setStatusCode(400);
