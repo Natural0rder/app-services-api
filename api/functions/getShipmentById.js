@@ -27,10 +27,9 @@ exports = async function({ query, headers, body}, response) {
         .then(result => {
             if (!result) {
                 response.setStatusCode(404);
-            } else {
-                response.setStatusCode(200);
+                return;
             }
-            
+            response.setStatusCode(200);
             return result;
         })
         .catch(err => {
