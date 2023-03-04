@@ -21,8 +21,7 @@ exports = async function({ query, headers, body}, response) {
     }
     
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
-    
-    
+  
     const match = { "_id" : objectId};
     const update = {
       "$set": EJSON.parse(body.text())
@@ -30,12 +29,15 @@ exports = async function({ query, headers, body}, response) {
     const options = { "upsert": false };
     
    shipmentsColl.updateOne(match, update, options)
-  .then(result => {
-    const { matchedCount, modifiedCount } = result;
-    if(matchedCount && modifiedCount) {
-      console.log(`Successfully updated the item.`)
-    }
+    .then(result => {
+      const { matchedCount, modifiedCount } = result;
+      if (matchedCount && modifiedCount) 
+        response.setStatusCode(200);
+      else
+        reponse.setStatusCode(409);
+    })
+  .catch(err => { 
+    response.setStatusCode(500);
+    response.setBody(`Failed to update the item: ${err}`);
   })
-  .catch(err => console.error(`Failed to update the item: ${err}`))
-    
 };
