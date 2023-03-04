@@ -1,0 +1,5 @@
+{
+    "name": "ShipmentCollectionName",
+    "value": "shipments",
+    "from_secret": false
+}
