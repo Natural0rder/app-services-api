@@ -26,7 +26,7 @@ exports = async function({ query, headers, body}, response) {
             return result;
         })
         .catch(ex => {
-            response.setBody(`Failed to find document: ${ex}`);
+            response.setBody(`Failed to find shipment ${id}: ${ex.message}`);
             response.setStatusCode(500);
         });
 };

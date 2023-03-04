@@ -8,6 +8,9 @@ exports = async function({ query, headers, body}, response) {
     }
     catch (ex) {
         response.setStatusCode(400);
+        response.setBody(JSON.stringify({ 
+          error : ex.message
+        }));
         response.setBody(ex.message);
         
         return;
@@ -15,7 +18,9 @@ exports = async function({ query, headers, body}, response) {
     
     if (body === undefined) {
         response.setStatusCode(400);
-        response.setBody(`Request body was not defined.`);
+        response.setBody(JSON.stringify({ 
+          error :`Request body was not defined.`
+        }));
         
         return;
     }
@@ -44,8 +49,10 @@ exports = async function({ query, headers, body}, response) {
         }));
       }
     })
-  .catch(err => { 
+  .catch(ex => { 
     response.setStatusCode(500);
-    response.setBody(`Failed to update the item: ${err}`);
+    response.setBody(JSON.stringify({ 
+        error :`Failed to update shipment ${id}: ${ex.message}`
+    }));
   })
 };
