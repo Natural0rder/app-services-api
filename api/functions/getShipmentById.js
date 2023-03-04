@@ -33,6 +33,7 @@ exports = async function({ query, headers, body}, response) {
       } else {
         response.setStatusCode(200);
       }
+      console.log(result._id);
       return result;
     })
   .catch(err => console.error(`Failed to find document: ${err}`));
