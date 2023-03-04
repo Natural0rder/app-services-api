@@ -1,5 +1,5 @@
 // This function is the endpoint's request handler.
-exports = function({ query, headers, body}, response) {
+exports = async function({ query, headers, body}, response) {
   
     const {id} = query;
     let objectId;
@@ -14,7 +14,7 @@ exports = function({ query, headers, body}, response) {
       return;
     }
     
-    const shipmentDoc = context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
+    const shipmentDoc = await context.services.get("mongodb-atlas").db("game").collection("shipments").findOne({ "_id" : objectId});
     
     if (shipmentDoc._id === undefined) {
       response.setStatusCode(404);
