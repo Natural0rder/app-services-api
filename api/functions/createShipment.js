@@ -1,5 +1,7 @@
 exports = async function({ query, headers, body}, response) {
   
+    response.setHeader("Content-Type", "application/json");
+    
     if (body === undefined) {
         response.setStatusCode(400);
         response.setBody(`Request body was not defined.`);
