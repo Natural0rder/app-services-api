@@ -21,5 +21,7 @@ exports = function({ query, headers, body}, response) {
     }
 
     response.setStatusCode(200);
+    response.setHeader("Content-Type", "application/json");
+
     return  shipmentDoc;
 };
