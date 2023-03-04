@@ -31,10 +31,18 @@ exports = async function({ query, headers, body}, response) {
    shipmentsColl.updateOne(match, update, options)
     .then(result => {
       const { matchedCount, modifiedCount } = result;
-      if (matchedCount && modifiedCount) 
+      if (matchedCount && modifiedCount) {
         response.setStatusCode(200);
-      else
+        response.setBody(JSON.stringify({
+          message: `Shipment ${id} successfully updated.`
+        }));
+      }
+      else {
         response.setStatusCode(409);
+        response.setBody(JSON.stringify({
+          message: `Shipment ${id} not found for updation.`
+        }));
+      }
     })
   .catch(err => { 
     response.setStatusCode(500);
