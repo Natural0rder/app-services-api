@@ -21,17 +21,21 @@ exports = async function({ query, headers, body}, response) {
     }
     
     const shipmentsColl = context.services.get("mongodb-atlas").db("game").collection("shipments");
-    const replacement = EJSON.parse(body.text());
     
-    return shipmentsColl.findOneAndReplace({ _id : objectId}, replacement, { returnNewDocument : true})
-  .then(replacedDocument => {
-    if(replacedDocument) {
-      console.log(`Successfully replaced the following document: ${replacedDocument}.`)
-    } else {
-      console.log("No document matches the provided query.")
+    
+    const find = { "_id": objectId };
+    const update = {
+      "$set": EJSON.parse(body.text())
+    };
+    const options = { "upsert": false };
+    
+   shipmentsColl.updateOne(query, update, options)
+  .then(result => {
+    const { matchedCount, modifiedCount } = result;
+    if(matchedCount && modifiedCount) {
+      console.log(`Successfully updated the item.`)
     }
-    return updatedDocument
   })
-  .catch(err => console.error(`Failed to find and replace document: ${err}`))
+  .catch(err => console.error(`Failed to update the item: ${err}`))
     
 };
