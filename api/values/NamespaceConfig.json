@@ -1,8 +1,0 @@
-{
-    "from_secret": false,
-    "name": "NamespaceConfig",
-    "value": {
-        "dbName": "game",
-        "shipmentCollName": "shipments"
-    }
-}
