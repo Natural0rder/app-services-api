@@ -1,7 +1,7 @@
 {
     "app_id": "shipment-api-sheej",
     "config_version": 20210101,
-    "name": "shipment-api",
+    "name": "shipment-api-prd",
     "location": "IE",
     "provider_region": "aws-eu-west-2",
     "deployment_model": "LOCAL",
