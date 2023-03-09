@@ -10,7 +10,7 @@ mongorestore --uri 'mongodb+srv://search-clu.e8fmq.mongodb.net/game' shipments.b
    --password='mysuperstrongpwd'
 ```
 
-In "development" environnement you can link your app to a GitHub repository folder and enable automatic deployment. Updates from App Services will e automatically pushed to GitHub. If you push to GitHub, changes will be sync to App Services leveraging Webhooks.
+In "development" environnement you can link your app to a GitHub repository folder and enable automatic deployment. Updates from App Services will be automatically pushed to GitHub. If you push to GitHub, changes will be sync to App Services leveraging Webhooks.
 
 ![image](https://user-images.githubusercontent.com/102281652/224009402-0abb5027-3997-4e90-91eb-30722988eace.png)
 
