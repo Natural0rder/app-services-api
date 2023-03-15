@@ -6,13 +6,13 @@
         "disable_arg_logs": true
     },
     {
-        "name": "createShipment",
+        "name": "updateShipment",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
     },
     {
-        "name": "updateShipment",
+        "name": "createShipment",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -21,6 +21,11 @@
         "name": "deleteShipmentById",
         "private": false,
         "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "getTest",
+        "private": false,
         "disable_arg_logs": true
     }
 ]
